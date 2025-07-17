@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Suivi d'entraînement - Juillet - Août 2025</title>
+<style>
+.nav-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Styles pour le mode sombre */
+  /* Reset & base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
+    color: #222;
+    line-height: 1.5;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px 40px;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    color: #1a73e8;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  h2 {
+    font-size: 1.8rem;
+    border-bottom: 3px solid #1a73e8;
+    padding-bottom: 6px;
+    margin-top: 30px;
+  }
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  section {
+    background: #fff;
+    padding: 22px 28px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.08);
+    margin-bottom: 30px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #1a73e8;
+    flex-shrink: 0;
+  }
+
+  /* Stats box */
+  .stats {
+    background-color: #e8f0fe;
+    border-left: 6px solid #1a73e8;
+    padding: 18px 22px;
+    border-radius: 5px;
+    font-style: normal;
+    color: #444;
+    margin-bottom: 30px;
+  }
+
+  /* Malus box */
+  .malus-box {
+    background-color: #ffe6e6;
+    border-left: 6px solid #e54e42;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: #a33a2b;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  /* Weekly tracker */
+  .week-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .week-btn {
+    padding: 8px 16px;
+    border: 2px solid #1a73e8;
+    background: transparent;
+    color: #1a73e8;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+
+  .week-btn.active {
+    background: #1a73e8;
+    color: white;
+  }
+
+  .week-btn.completed {
+    background: #4caf50;
+    border-color: #4caf50;
+    color: white;
+  }
+
+  .week-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Rewards section */
+  .rewards-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .reward-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .reward-card.unlocked {
+    background: rgba(76,175,80,0.3);
+    border-color: #4caf50;
+  }
+
+  button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.7);
+    transition: background-color 0.3s;
+    user-select: none;
+  }
+  button:hover {
+    background-color: #155ab6;
+  }
+  button.reset {
+    background-color:#888;
+  }
+  button.reset:hover {
+    background-color:#555;
+  }
+
+  /* Responsive text */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    body {
+      padding: 15px 15px 35px;
+    }
+    label {
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    button.reset {
+      margin-left: 0;
+    }
+    .week-selector {
+      flex-direction: column;
+    }
+    .week-btn {
+      width: 100%;
+    }
+  }
+
+  /* Dark mode styles */
+  body.dark {
+    background-color: #121212;
+    color: #ddd;
+  }
+  body.dark section {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(255 255 255 / 0.1);
+  }
+  body.dark .stats {
+    background-color: #263238;
+    border-left-color: #2962ff;
+    color: #bbb;
+  }
+  body.dark .malus-box {
+    background-color: #4b1b1b;
+    border-left-color: #ff4c4c;
+    color: #ff9999;
+  }
+  body.dark button {
+    background-color: #2962ff;
+    box-shadow: 0 2px 8px rgba(41, 98, 255, 0.7);
+  }
+  body.dark button:hover {
+    background-color: #154ecf;
+  }
+
+  /* Toggle button style */
+  #darkModeToggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.7);
+    z-index: 9999;
+    user-select: none;
+  }
+  #darkModeToggle:hover {
+    background-color: #155ab6;
+  }
+
+  /* Decorations animations */
+  .star {
+    position: fixed;
+    background: linear-gradient(45deg, #ffdf5d, #ff9f43);
+    border-radius: 50%;
+    box-shadow: 0 0 8px 2px #ffdf5d;
+    animation: twinkle 3s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.2); }
+  }
+
+  .confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #1a73e8;
+    opacity: 0.8;
+    animation: confettiFall 4s linear infinite;
+    pointer-events: none;
+    border-radius: 3px;
+    z-index: 1000;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Thematic decorations */
+  .italian-flag {
+    position: fixed;
+    width: 60px;
+    height: 40px;
+    background: linear-gradient(to right, #009246 33%, #fff 33% 66%, #ce2b37 66%);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    animation: wave 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .pizza {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: #ffcc5c;
+    border-radius: 50%;
+    border: 3px solid #e67e22;
+    animation: spin 4s linear infinite;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .pizza::before {
+    content: '🍕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+  }
+
+  .tent {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 30px solid #8B4513;
+    animation: bounce 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .tent::after {
+    content: '⛺';
+    position: absolute;
+    top: 20px;
+    left: -15px;
+    font-size: 20px;
+  }
+
+  .campfire {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #ff6b35 0%, #f7931e 50%, #ffcc02 100%);
+    border-radius: 50%;
+    animation: flicker 1.5s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .campfire::before {
+    content: '🔥';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes flicker {
+    0% { transform: scale(1) rotate(-2deg); }
+    100% { transform: scale(1.1) rotate(2deg); }
+  }
+
+  /* Permanent decorations container */
+  .permanent-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 500;
+  }
+</style>
+</head>
+<body>
+
+<button id="darkModeToggle" aria-label="Activer le mode sombre">🌙 Mode Sombre</button>
+
+<div class="permanent-decorations" id="permanentDecorations"></div>
+
+<h1>Suivi d'entraînement Juillet – Août 2025</h1>
+
+<section class="rewards-section">
+  <h2>🏆 Récompenses Hebdomadaires</h2>
+  <p>Complétez une semaine entière pour débloquer des décorations permanentes !</p>
+  <div class="rewards-grid" id="rewardsGrid">
+    <!-- Rewards will be generated by JavaScript -->
+  </div>
+</section>
+
+<section>
+  <h2>📅 Sélection de la semaine</h2>
+  <div class="week-selector" id="weekSelector">
+    <!-- Week buttons will be generated by JavaScript -->
+  </div>
+  <p><strong>Semaine actuelle :</strong> <span id="currentWeekDisplay">Sélectionnez une semaine</span></p>
+</section>
+
+<section>
+  <h2>Suivi Hebdomadaire</h2>
+  <form id="trackingForm">
+    <label><input type="checkbox" name="day" value="lundi"> Lundi</label>
+    <label><input type="checkbox" name="day" value="mardi"> Mardi</label>
+    <label><input type="checkbox" name="day" value="mercredi"> Mercredi</label>
+    <label><input type="checkbox" name="day" value="jeudi"> Jeudi</label>
+    <label><input type="checkbox" name="day" value="vendredi"> Vendredi</label>
+    <label><input type="checkbox" name="day" value="samedi"> Samedi</label>
+    <label><input type="checkbox" name="day" value="dimanche"> Dimanche</label>
+  </form>
+</section>
+
+<section class="malus-box" id="malusBox" style="display:none;">
+  <h3>Malus à faire :</h3>
+  <ul id="malusList"></ul>
+</section>
+
+<section class="stats">
+  <h2>Stats & Récompenses</h2>
+  <p><strong>XP :</strong> <span id="xp">0</span></p>
+  <p><strong>Malus :</strong> <span id="malus">0</span></p>
+  <p><strong>Niveau :</strong> <span id="level">1</span></p>
+  <p><strong>Récompense :</strong> <span id="reward">Aucune pour le moment</span></p>
+  <p><strong>Semaines complétées :</strong> <span id="completedWeeks">0</span></p>
+</section>
+
+<section>
+  <button id="calculateBtn">Calculer XP et Malus</button>
+  <button id="resetBtn" class="reset" style="margin-left: 12px;">Réinitialiser</button>
+  <button id="resetAllBtn" class="reset" style="margin-left: 12px;">Tout Réinitialiser</button>
+</section>
+
+<footer>
+  &copy; 2025 - Suivi personnel d'entraînement
+</footer>
+
+<script>
+  // Configuration des semaines
+  const WEEKS = [
+    { id: 'week1', name: 'Sem. 1', dates: '14-20 Juillet', theme: 'default' },
+    { id: 'week2', name: 'Sem. 2', dates: '21-27 Juillet', theme: 'italy' },
+    { id: 'week3', name: 'Sem. 3', dates: '28 Juillet - 3 Août', theme: 'italy' },
+    { id: 'week4', name: 'Sem. 4', dates: '4-10 Août', theme: 'default' },
+    { id: 'week5', name: 'Sem. 5', dates: '11-17 Août', theme: 'default' },
+    { id: 'week6', name: 'Sem. 6', dates: '18-24 Août', theme: 'camping' },
+    { id: 'week7', name: 'Sem. 7', dates: '25-31 Août', theme: 'default' }
+  ];
+
+  // Récompenses par semaine
+  const REWARDS = {
+    week1: { name: 'Étoiles scintillantes', icon: '⭐', description: 'Étoiles qui brillent en permanence' },
+    week2: { name: 'Drapeaux italiens', icon: '🇮🇹', description: 'Drapeaux italiens qui flottent' },
+    week3: { name: 'Pizzas volantes', icon: '🍕', description: 'Pizzas qui tournent joyeusement' },
+    week4: { name: 'Confettis arc-en-ciel', icon: '🎊', description: 'Confettis colorés qui tombent' },
+    week5: { name: 'Feux d\'artifice', icon: '🎆', description: 'Explosions de couleurs' },
+    week6: { name: 'Tentes de camping', icon: '⛺', description: 'Tentes qui se balancent' },
+    week7: { name: 'Feux de camp', icon: '🔥', description: 'Feux qui crépitent' }
+  };
+
+  // État global
+  let currentWeek = 'week1';
+  let weeklyProgress = {};
+  let completedWeeks = new Set();
+
+  // Initialisation du localStorage
+  function initializeStorage() {
+    try {
+      const saved = localStorage.getItem('trainingProgress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        weeklyProgress = data.weeklyProgress || {};
+        completedWeeks = new Set(data.completedWeeks || []);
+      }
+    } catch (e) {
+      // En cas d'erreur localStorage, on utilise des variables en mémoire
+      weeklyProgress = {};
+      completedWeeks = new Set();
+    }
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem('trainingProgress', JSON.stringify({
+        weeklyProgress,
+        completedWeeks: Array.from(completedWeeks)
+      }));
+    } catch (e) {
+      // En cas d'erreur localStorage, on continue avec les données en mémoire
+      console.log('Sauvegarde en mémoire seulement');
+    }
+  }
+
+  // Mode sombre
+  const toggleBtn = document.getElementById('darkModeToggle');
+  const body = document.body;
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    toggleBtn.textContent = body.classList.contains('dark') ? '☀️ Mode Clair' : '🌙 Mode Sombre';
+  });
+
+  // Variables XP et malus
+  let xp = 0;
+  let malus = 0;
+  let level = 1;
+
+  const xpDisplay = document.getElementById('xp');
+  const malusDisplay = document.getElementById('malus');
+  const levelDisplay = document.getElementById('level');
+  const rewardDisplay = document.getElementById('reward');
+  const completedWeeksDisplay = document.getElementById('completedWeeks');
+  const calculateBtn = document.getElementById('calculateBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const resetAllBtn = document.getElementById('resetAllBtn');
+  const form = document.getElementById('trackingForm');
+  const malusBox = document.getElementById('malusBox');
+  const malusList = document.getElementById('malusList');
+  const currentWeekDisplay = document.getElementById('currentWeekDisplay');
+
+  // Constantes
+  const XP_PER_DAY = 10;
+  const MALUS_PER_DAY = 5;
+  const LEVEL_UP_XP = 50;
+
+  const MALUS_ACTIONS = [
+    "Faire 10 pompes",
+    "Faire 15 squats",
+    "Courir 10 minutes",
+    "Faire 5 minutes d'étirement",
+    "Marcher 20 minutes",
+    "Faire 20 abdos"
+  ];
+
+  // Fonctions de création des décorations
+  function createStar() {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.width = star.style.height = (5 + Math.random() * 10) + 'px';
+    star.style.top = Math.random() * window.innerHeight + 'px';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.animationDuration = (2 + Math.random() * 2) + 's';
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 4000);
+  }
+
+  function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.animationDuration = (3 + Math.random() * 2) + 's';
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 4000);
+  }
+
+  function createItalianFlag() {
+    const flag = document.createElement('div');
+    flag.className = 'italian-flag';
+    flag.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    flag.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    return flag;
+  }
+
+  function createPizza() {
+    const pizza = document.createElement('div');
+    pizza.className = 'pizza';
+    pizza.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    pizza.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    return pizza;
+  }
+
+  function createTent() {
+    const tent = document.createElement('div');
+    tent.className = 'tent';
+    tent.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    tent.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    return tent;
+  }
+
+  function createCampfire() {
+    const campfire = document.createElement('div');
+    campfire.className = 'campfire';
+    campfire.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    campfire.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    return campfire;
+  }
+
+  function createPermanentStar() {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.width = star.style.height = (8 + Math.random() * 6) + 'px';
+    star.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    star.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    star.style.animationDuration = (2 + Math.random() * 2) + 's';
+    star.style.position = 'absolute';
+    return star;
+  }
+
+  // Gestion des décorations permanentes
+  function addPermanentDecoration(weekId) {
+    const container = document.getElementById('permanentDecorations');
+    const reward = REWARDS[weekId];
+    
+    if (!reward) return;
+
+    for (let i = 0; i < 3; i++) {
+      let decoration;
+      
+      switch (weekId) {
+        case 'week1':
+          decoration = createPermanentStar();
+          break;
+        case 'week2':
+          decoration = createItalianFlag();
+          break;
+        case 'week3':
+          decoration = createPizza();
+          break;
+        case 'week4':
+          // Confettis colorés permanents
+          decoration = document.createElement('div');
+          decoration.className = 'confetti';
+          decoration.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+          decoration.style.left = Math.random() * (window.innerWidth - 20) + 'px';
+          decoration.style.top = Math.random() * (window.innerHeight - 20) + 'px';
+          decoration.style.position = 'absolute';
+          decoration.style.animation = 'none';
+          break;
+        case 'week5':
+          // Feux d'artifice (étoiles colorées)
+          decoration = createPermanentStar();
+          decoration.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+          decoration.style.boxShadow = `0 0 12px 3px hsl(${Math.random() * 360}, 70%, 60%)`;
+          break;
+        case 'week6':
+          decoration = createTent();
+          break;
+        case 'week7':
+          decoration = createCampfire();
+          break;
+      }
+      
+      if (decoration) {
+        container.appendChild(decoration);
+      }
+    }
+  }
+
+  // Initialisation des semaines
+  function initializeWeeks() {
+    const weekSelector = document.getElementById('weekSelector');
+    const rewardsGrid = document.getElementById('rewardsGrid');
+    
+    // Créer les boutons de semaine
+    WEEKS.forEach(week => {
+      const btn = document.createElement('button');
+      btn.className = 'week-btn';
+      btn.textContent = `${week.name} (${week.dates})`;
+      btn.addEventListener('click', () => selectWeek(week.id));
+      
+      if (completedWeeks.has(week.id)) {
+        btn.classList.add('completed');
+      }
+      
+      weekSelector.appendChild(btn);
+    });
+
+    // Créer les cartes de récompenses
+    WEEKS.forEach(week => {
+      const reward = REWARDS[week.id];
+      const card = document.createElement('div');
+      card.className = 'reward-card';
+      
+      if (completedWeeks.has(week.id)) {
+        card.classList.add('unlocked');
+      }
+      
+      card.innerHTML = `
+        <div style="font-size: 2rem; margin-bottom: 8px;">${reward.icon}</div>
+        <h4>${reward.name}</h4>
+        <p style="font-size: 0.9rem; opacity: 0.8;">${reward.description}</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">
+          ${completedWeeks.has(week.id) ? '✅ Débloqué' : '🔒 Verrouillé'}
+        </p>
+      `;
+      
+      rewardsGrid.appendChild(card);
+    });
+  }
+
+  // Sélection de semaine
+  function selectWeek(weekId) {
+    currentWeek = weekId;
+    const week = WEEKS.find(w => w.id === weekId);
+    currentWeekDisplay.textContent = `${week.name} (${week.dates})`;
+    
+    // Mettre à jour les boutons
+    document.querySelectorAll('.week-btn').forEach((btn, index) => {
+      btn.classList.remove('active');
+      if (index === WEEKS.findIndex(w => w.id === weekId)) {
+        btn.classList.add('active');
+      }
+    });
+    
+    // Charger les données de la semaine
+    loadWeekData(weekId);
+  }
+
+  // Charger les données d'une semaine
+  function loadWeekData(weekId) {
+    const data = weeklyProgress[weekId] || {};
+    
+    // Réinitialiser le formulaire
+    form.reset();
+    
+    // Restaurer les cases cochées
+    if (data.checkedDays) {
+      data.checkedDays.forEach(day => {
+        const checkbox = form.querySelector(`input[value="${day}"]`);
+        if (checkbox) checkbox.checked = true;
+      });
+    }
+    
+    // Mettre à jour les stats
+    updateStats();
+  }
+
+  // Sauvegarder les données de la semaine
+  function saveWeekData(weekId) {
+    const checkedDays = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+    
+    weeklyProgress[weekId] = {
+      checkedDays,
+      completed: checkedDays.length === 7
+    };
+    
+    if (checkedDays.length === 7) {
+      if (!completedWeeks.has(weekId)) {
+        completedWeeks.add(weekId);
+        addPermanentDecoration(weekId);
+        showWeekCompletionReward(weekId);
+        updateRewardsDisplay();
+      }
+    } else {
+      completedWeeks.delete(weekId);
+    }
+    
+    saveProgress();
+  }
+
+  // Afficher récompense de fin de semaine
+  function showWeekCompletionReward(weekId) {
+    const reward = REWARDS[weekId];
+    
+    // Animation spéciale pour la complétion
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        createConfetti();
+        createStar();
+      }, i * 100);
+    }
+    
+    // Notification
+    setTimeout(() => {
+      alert(`🎉 Semaine terminée ! Vous avez débloqué : ${reward.name} ${reward.icon}`);
+    }, 1000);
+  }
+
+  // Mettre à jour l'affichage des récompenses
+  function updateRewardsDisplay() {
+    const cards = document.querySelectorAll('.reward-card');
+    cards.forEach((card, index) => {
+      const weekId = WEEKS[index].id;
+      if (completedWeeks.has(weekId)) {
+        card.classList.add('unlocked');
+        card.querySelector('p:last-child').textContent = '✅ Débloqué';
+      } else {
+        card.classList.remove('unlocked');
+        card.querySelector('p:last-child').textContent = '🔒 Verrouillé';
+      }
+    });
+    
+    // Mettre à jour les boutons de semaine
+    document.querySelectorAll('.week-btn').forEach((btn, index) => {
+      const weekId = WEEKS[index].id;
+      btn.classList.remove('completed');
+      if (completedWeeks.has(weekId)) {
+        btn.classList.add('completed');
+      }
+    });
+  }
+
+  // Animation de récompense
+  function showRewardAnimation(level) {
+    if (level >= 5) {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createConfetti, i * 150);
+        setTimeout(createStar, i * 150 + 75);
+      }
+    } else if (level >= 3) {
+      for (let i = 0; i < 10; i++) {
+        setTimeout(createStar, i * 200);
+      }
+    } else if (level >= 2) {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createStar, i * 300);
+      }
+    }
+  }
+
+  // Mise à jour des statistiques
+  function updateStats() {
+    const checkedDays = form.querySelectorAll('input[type="checkbox"]:checked').length;
+    const uncheckedDays = 7 - checkedDays;
+
+    xp = checkedDays * XP_PER_DAY;
+    malus = uncheckedDays * MALUS_PER_DAY;
+    level = Math.floor(xp / LEVEL_UP_XP) + 1;
+
+    xpDisplay.textContent = xp;
+    malusDisplay.textContent = malus;
+    levelDisplay.textContent = level;
+    completedWeeksDisplay.textContent = completedWeeks.size;
+
+    // Attribution récompense
+    if (level >= 5) {
+      rewardDisplay.textContent = "Badge d'expert 💎";
+    } else if (level >= 3) {
+      rewardDisplay.textContent = "Badge intermédiaire ⭐";
+    } else if (level >= 2) {
+      rewardDisplay.textContent = "Badge débutant 🏅";
+    } else {
+      rewardDisplay.textContent = "Aucune pour le moment";
+    }
+
+    // Affichage malus
+    if (uncheckedDays > 0) {
+      malusBox.style.display = 'block';
+      malusList.innerHTML = '';
+      for (let i = 0; i < uncheckedDays; i++) {
+        const action = MALUS_ACTIONS[i % MALUS_ACTIONS.length];
+        const li = document.createElement('li');
+        li.textContent = action;
+        malusList.appendChild(li);
+      }
+    } else {
+      malusBox.style.display = 'none';
+      malusList.innerHTML = '';
+    }
+  }
+
+  // Calculer les stats
+  function calculateStats() {
+    updateStats();
+    saveWeekData(currentWeek);
+    showRewardAnimation(level);
+  }
+
+  // Événements
+  calculateBtn.addEventListener('click', calculateStats);
+
+  resetBtn.addEventListener('click', () => {
+    form.reset();
+    if (weeklyProgress[currentWeek]) {
+      delete weeklyProgress[currentWeek];
+    }
+    completedWeeks.delete(currentWeek);
+    saveProgress();
+    updateStats();
+    updateRewardsDisplay();
+  });
+
+  resetAllBtn.addEventListener('click', () => {
+    if (confirm('Êtes-vous sûr de vouloir tout réinitialiser ?')) {
+      weeklyProgress = {};
+      completedWeeks = new Set();
+      document.getElementById('permanentDecorations').innerHTML = '';
+      try {
+        localStorage.removeItem('trainingProgress');
+      } catch (e) {
+        // Ignore localStorage errors
+      }
+      form.reset();
+      updateStats();
+      updateRewardsDisplay();
+    }
+  });
+
+  // Initialisation
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeStorage();
+    initializeWeeks();
+    selectWeek('week1');
+    
+    // Restaurer les décorations permanentes
+    completedWeeks.forEach(weekId => {
+      addPermanentDecoration(weekId);
+    });
+    
+    updateRewardsDisplay();
+  });
+
+  // Sauvegarder automatiquement les changements
+  form.addEventListener('change', () => {
+    saveWeekData(currentWeek);
+  });
+// Initialisation au chargement de la page
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeStorage(); // Charge la progression sauvegardée
+    initializeWeeks(); // Crée les boutons de semaine et les cartes de récompenses
+    
+    // Sélectionne la première semaine par défaut si aucune semaine n'est active
+    if (!currentWeek || !weeklyProgress[currentWeek]) {
+      selectWeek('week1'); 
+    } else {
+      selectWeek(currentWeek); // Charge la semaine active sauvegardée
+    }
+    
+    // Ajoute les décorations permanentes pour les semaines déjà complétées
+    completedWeeks.forEach(weekId => {
+      addPermanentDecoration(weekId);
+    });
+    
+    updateRewardsDisplay(); // Met à jour l'affichage des récompenses et des boutons de semaine
+    updateStats(); // Met à jour les statistiques initiales
+  });
+
+  // Sauvegarder automatiquement les changements quand une checkbox est cochée/décochée
+  form.addEventListener('change', () => {
+    saveWeekData(currentWeek); // Sauvegarde l'état de la semaine actuelle
+    updateStats(); // Met à jour les statistiques en temps réel
+  });
+</script>
+</body>
+</html>
